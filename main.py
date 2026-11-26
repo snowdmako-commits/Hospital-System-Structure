@@ -102,3 +102,54 @@ def createAppointment():
 
     except Exception as e:
         print("Error:", e)
+
+def main():
+    while True:
+        try:
+            print("""
+====================================
+       HOSPITAL MANAGEMENT SYSTEM
+====================================
+
+1. Add Doctor
+2. Add Patient
+3. Show All Doctors
+4. Show All Patients
+5. Create Appointment
+6. Show All Appointments
+0. Exit
+
+====================================
+""")
+
+            choice = input("Enter your choice: ").strip()
+
+            if choice == "1":
+                addDoctor()
+
+            elif choice == "2":
+                addPatient()
+
+            elif choice == "3":
+                hospital.showDoctors()
+
+            elif choice == "4":
+                hospital.showPatients()
+
+            elif choice == "5":
+                createAppointment()
+
+            elif choice == "6":
+                hospital.showAppointments()
+
+            elif choice == "0":
+                print("\nThank you for using Hospital Management System!")
+                break
+
+            else:
+                print("\nInvalid choice! Please try again.")
+
+        except Exception as e:
+            print("Unexpected error:", e)
+
+main()
