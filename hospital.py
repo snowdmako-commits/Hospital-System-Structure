@@ -37,3 +37,49 @@ class Hospital:
 
         for patient in self.patients:
             patient.showInfo()
+
+    def createAppointment(self, doctorID, patientID, date, time):
+
+        doctor = None
+        patient = None
+
+        for d in self.doctors:
+            if d.doctorID == doctorID:
+                doctor = d
+                break
+
+        for p in self.patients:
+            if p.patientID == patientID:
+                patient = p
+                break
+
+        if doctor is None:
+            print("\nDoctor not found!")
+            return
+
+        if patient is None:
+            print("\nPatient not found!")
+            return
+
+        try:
+            appointmentDate = datetime.strptime(date, "%Y-%m-%d")     # bu hisseni ai - dan istedim appointmentDate birde appointmentTime
+            appointmentTime = datetime.strptime(time, "%H:%M")        #
+
+            if appointmentDate.date() < datetime.today().date():
+                print("\nYou cannot create an appointment in the past!")
+                return
+
+        except ValueError:
+            print("\nInvalid date or time format!")
+            print("Date format: YYYY-MM-DD")
+            print("Time format: HH:MM")
+            return
+
+        appointmentID = max([a.appointmentID for a in self.appointments],default=0) + 1
+
+        appointment = Appointment(appointmentID,doctor,patient,date,time)
+
+        self.appointments.append(appointment)
+
+        print("\nAppointment created successfully!")
+        appointment.showInfo()
