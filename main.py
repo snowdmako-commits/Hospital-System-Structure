@@ -78,3 +78,27 @@ def addPatient():
 
     except Exception as e:
         print("Error:", e)
+
+def createAppointment():
+    try:
+        print("\n========== CREATE APPOINTMENT ==========")
+
+        if not hospital.doctors:
+            print("Please add a doctor first!")
+            return
+
+        if not hospital.patients:
+            print("Please add a patient first!")
+            return
+
+        hospital.showDoctors()
+        doctorID = getInt("\nEnter Doctor ID: ")
+        hospital.showPatients()
+        patientID = getInt("\nEnter Patient ID: ")
+        date = getText("Date (YYYY-MM-DD): ")
+        time = getText("Time (HH:MM): ")
+
+        hospital.createAppointment(doctorID,patientID,date,time)
+
+    except Exception as e:
+        print("Error:", e)
