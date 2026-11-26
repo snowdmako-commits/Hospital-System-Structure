@@ -17,3 +17,23 @@ class Hospital:
     def addPatient(self, patient):
         self.patients.append(patient)
         print("\nPatient added successfully!")
+
+    def showDoctors(self):
+        if not self.doctors:
+            print("\nNo doctors found!")
+            return
+
+        print("\n========== DOCTORS ==========")
+
+        for doctor in self.doctors:
+            doctor.showInfo()
+
+    def showPatients(self):
+        if not self.patients:
+            print("\nNo patients found!")
+            return
+
+        print("\n========== PATIENTS ==========")
+
+        for patient in self.patients:
+            patient.showInfo()
