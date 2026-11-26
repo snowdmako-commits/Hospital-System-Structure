@@ -83,3 +83,13 @@ class Hospital:
 
         print("\nAppointment created successfully!")
         appointment.showInfo()
+
+    def showAppointments(self):
+        if not self.appointments:
+            print("\nNo appointments found!")
+            return
+
+        print("\n========== ALL APPOINTMENTS ==========")
+
+        for appointment in self.appointments:
+            appointment.showInfo()
